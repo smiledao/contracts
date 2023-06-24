@@ -40,7 +40,7 @@ contract SmileNFT is
         _unpause();
     }
 
-    function safeMint(
+    function mint(
         uint256[] memory pubInputs,
         bytes memory proof,
         string memory uri
