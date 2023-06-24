@@ -4,6 +4,7 @@ pragma solidity ^0.8.18;
 
 import "forge-std/Script.sol";
 import "../src/Governor.sol";
+import "../src/SmileNFT.sol";
 import "lib/openzeppelin-contracts/contracts/governance/extensions/GovernorTimelockControl.sol";
 import "lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotes.sol";
 
@@ -17,10 +18,11 @@ contract Deployer is Script {
 
         vm.startBroadcast(deployerPrivateKey);
 
+        // TODO: Replace with verifier address
+        SmileNFT nft = new SmileNFT(address(0));
         TimelockController timelock = new TimelockController(2 days, timelockProposers, timelockExecuters, deployer);
 
-        // TODO: Replace with ERC721Votes
-        Governor governor = new Governor(IVotes(address(0)), timelock);
+        MyGovernor governor = new MyGovernor(IVotes(address(nft)), timelock);
 
         // Grant roles to governor
         timelock.grantRole(timelock.PROPOSER_ROLE(), address(governor));
