@@ -44,7 +44,7 @@ contract SmileNFT is
         uint256[] memory pubInputs,
         bytes memory proof,
         string memory uri
-    ) public onlyOwner {
+    ) public {
         require(_verifier.verify(pubInputs, proof), "Failed verification!");
 
         uint256 tokenId = _tokenIdCounter.current();
