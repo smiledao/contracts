@@ -11,7 +11,9 @@ import "lib/openzeppelin-contracts/contracts/governance/extensions/GovernorVotes
 contract Deployer is Script {
     function run() external {
         uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        address verifierContract = 0x7082dcF305BE310DE38294E1B339616Ce844b768;
+        address verifierContract = 0xe24C0393A5f3c08fD27072F001A4F7de670E60bf;
+        address VERIFIER_CONTRACT = 0x7082dcF305BE310DE38294E1B339616Ce844b768;
+
         address deployer = vm.addr(deployerPrivateKey);
 
         address[] memory timelockProposers = new address[](0);
